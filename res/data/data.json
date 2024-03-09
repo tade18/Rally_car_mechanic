@@ -1,0 +1,23 @@
+[
+    {
+        "name":"Peugeot 205 t16",
+        "class": "Group B",
+        "source": "./res/img/cars/peugeot-205-t16.png",
+        "partsLocation": {
+            "engine": {
+                "x": 100,
+                "y": 200,
+                "width": 300,
+                "height": 300
+            },
+            "wheels":{
+                "reartW":{
+                    "x": 250,
+                    "y": 500,
+                    "width": 120,
+                    "height": 120
+                }
+            }
+        }
+    }
+]

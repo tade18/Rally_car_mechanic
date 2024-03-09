@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+    user-select: none;
+    margin: 0;
+    overflow: hidden;
+    font-family: Lucida Console;
+}
+body{
+    background-color: black;
+}
+#gameCanvas{
+    object-fit: contain;
+    background-color: aliceblue;
+  }
+#statusPanel{
+    display: block;
+    background-color: blue;
+    color: white;
+    width: 580px;
+    height: 20px;
+}
