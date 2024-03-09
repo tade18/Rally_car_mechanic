@@ -3,5 +3,6 @@ export class Car {
     constructor(type){
         this.img = new Image();
         this.img.src
+        //stupid
     }
 }

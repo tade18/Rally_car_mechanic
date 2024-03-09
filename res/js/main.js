@@ -28,7 +28,7 @@ const resizeCanvas = () => {
 const update = () =>{
     ctx.drawImage(car, 200, 300,820,330);
     ctx.fillStyle = "rgba(0, 255, 255, 0.5)";
-    ctx.fillRect(200,300,200,200);
+    ctx.fillRect(klikaciOblasti[0].x,klikaciOblasti[0].y,klikaciOblasti[0].sirka,klikaciOblasti[0].vyska);
     ctx.fillRect(280,500,120,120);
     ctx.fillRect(770,500,120,120);
 };
@@ -41,7 +41,6 @@ const gameLoop = () =>{
 window.onload = ()=>{
     window.requestAnimationFrame(gameLoop);
 };
-
 
 var klikaciOblasti = [
     { nazev: "Engine", x: 200, y: 300, sirka: 200, vyska: 200},
