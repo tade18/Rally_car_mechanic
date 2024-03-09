@@ -49,11 +49,13 @@ var klikaciOblasti = [
     // Další klikací oblasti...
 ];
 
-gameCanvas.addEventListener("click", function(event) {
-    var rect = gameCanvas.getBoundingClientRect();
-    var mouseX = event.clientX - rect.left;
-    var mouseY = event.clientY - rect.top;
 
+gameCanvas.addEventListener("click", function(event) {
+    var canvasBound = gameCanvas.getBoundingClientRect();
+    let canvasRatioX = gameCanvas.width / canvasBound.width;
+    var mouseX = (event.clientX - canvasBound.left) * canvasRatioX;
+    let canvasRatioY = gameCanvas.height / canvasBound.height;
+    var mouseY = (event.clientY - canvasBound.top) * canvasRatioY;
     klikaciOblasti.forEach(function(oblast) {
         if (mouseX >= oblast.x && mouseX <= oblast.x + oblast.sirka &&
             mouseY >= oblast.y && mouseY <= oblast.y + oblast.vyska) {
