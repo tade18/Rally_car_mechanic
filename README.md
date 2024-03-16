@@ -1,6 +1,6 @@
 <h1>↓</h1>
 <a href="https://tade18.github.io/Rally_car_mechanic/">Click here!</a>
-<h2>1. FC</h1><br>
+<h2>1.00</h1><br>
    <p>-adding canvas</p>
    <p>-resizing canvas</p>
 <h3>1.01</h3><br>
