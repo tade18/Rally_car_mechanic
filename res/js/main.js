@@ -1,4 +1,5 @@
 import { Background } from "./background.js";
+import { Car } from "./car.js";
 const statusPanel = document.getElementById("statusPanel");
 
 const gameCanvas = document.getElementById("gameCanvas");
@@ -8,44 +9,49 @@ ctx.globalAlpha = 0.5;
 const background = new Background();
 
 const loadData = async()=>{
-    const file = await fetch("./res/data/characters.json");
+    const file = await fetch("./res/data/data.json");
     const data = await file.json();
-    Car.CarsData = data;
 };
-
-//vykreslení auta
-    var car = new Image();
-    car.src = "./res/img/cars/peugeot-205-t16.png";
-
+const car = new Car(200,300,820,330,"./res/img/cars/peugeot-205-t16.png");
+//CLEAR CANVAS--------------------------------------------
 const clearCanvas = () =>{
     background.draw(ctx);
-}
+};
 const resizeCanvas = () => {
         gameCanvas.width = 1280;
         gameCanvas.height = 720;
 };  
-
-const update = () =>{
-    ctx.drawImage(car, 200, 300,820,330);
+//UPDATE--------------------------------------------------
+const update =() =>{
+    car.draw(ctx);
     ctx.fillStyle = "rgba(0, 255, 255, 0.5)";
     ctx.fillRect(klikaciOblasti[0].x,klikaciOblasti[0].y,klikaciOblasti[0].sirka,klikaciOblasti[0].vyska);
-    ctx.fillRect(280,500,120,120);
-    ctx.fillRect(770,500,120,120);
+    ctx.fillStyle = "rgba(255, 0, 255, 0.5)";
+    ctx.fillRect(klikaciOblasti[1].x,klikaciOblasti[1].y,klikaciOblasti[1].sirka,klikaciOblasti[1].vyska);
+    ctx.fillRect(klikaciOblasti[2].x,klikaciOblasti[2].y,klikaciOblasti[2].sirka,klikaciOblasti[2].vyska);
+    ctx.fillStyle = "rgba(0, 0, 255, 0.5)";
+    ctx.fillRect(klikaciOblasti[3].x,klikaciOblasti[3].y,klikaciOblasti[3].sirka,klikaciOblasti[3].vyska);
+    ctx.fillStyle = "rgba(255, 255, 0, 0.5)";
+    ctx.fillRect(klikaciOblasti[4].x,klikaciOblasti[4].y,klikaciOblasti[4].sirka,klikaciOblasti[4].vyska);
 };
-
+//GAMELOOP-------------------------------------------------
 const gameLoop = () =>{
     resizeCanvas();
     clearCanvas();
     update();
 };
-window.onload = ()=>{
+//PO NAČTENÍ STRÁNKY---------------------------------------
+window.onload = async()=>{
     window.requestAnimationFrame(gameLoop);
+    await loadData();
 };
-
+//DEFINOVÁNÍ DÍLŮ------------------------------------------
 var klikaciOblasti = [
     { nazev: "Engine", x: 200, y: 300, sirka: 200, vyska: 200},
     { nazev: "RearWheels", x: 280, y: 500, sirka: 120, vyska: 120 },
     { nazev: "FrontWheels", x: 770, y: 500, sirka: 120, vyska: 120 },
+    { nazev: "BodyWork", x: 430, y:330, sirka: 330, vyska: 200},
+    { nazev: "Chassis", x: 430, y:535, sirka: 330, vyska: 50}
     // Další klikací oblasti...
 ];
 
@@ -61,7 +67,7 @@ gameCanvas.addEventListener("click", function(event) {
             mouseY >= oblast.y && mouseY <= oblast.y + oblast.vyska) {
             console.log("Kliknuto na " + oblast.nazev);
             statusPanel.innerText = "Kliknuto na " + oblast.nazev;
-            // Zde zavolej funkci pro opravu dané části auta
+            //tady zavolat funkci pro opravu dané oblasti
         }
     })
 });
